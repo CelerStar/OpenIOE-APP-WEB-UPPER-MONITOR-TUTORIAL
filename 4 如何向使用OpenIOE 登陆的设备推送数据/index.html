@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        用户名<input type="" name="input1" id="peopleWebName" value="" />
+        <br> 密码
+        <input type="" name="input1" id="peopleWebPWD" value="" />
+        <button id="button1">登陆</button>
+        <br>
+        <input type="" name="input1" id="message" value="" />
+        <br>
+        <button id="buttonSend">发送</button>
+        <script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+            var OpenIOE_userLogin = function(string) {
+                $.ajax({
+                    type: "GET",
+                    url: "https://api.celerstar.com/IOT/index.php",
+                    data: string,
+                    timeout: 5000,
+                    dataType: 'JSONP',
+                    jsonp: "callback",
+                    success: function(data) {
+                        console.log(data);
+                        if(data["INFO"] == "true") {} else {}
+                    },
+                    error: function() {}
+                });
+                return false;
+            }
+            var OpenIOE_sendMachine = function(string) {
+                $.ajax({
+                    type: "GET",
+                    url: "https://api.celerstar.com/IOT/index.php",
+                    data: string,
+                    timeout: 5000,
+                    dataType: 'JSONP',
+                    jsonp: "callback",
+                    success: function(data) {
+                        console.log(data);
+                        if(data["INFO"] == "true") {} else {}
+                    },
+                    error: function() {}
+                });
+                return false;
+            }
+            $("#button1").click(function() {
+                peopleWebName = $("#peopleWebName").val();
+                peopleWebPWD = $("#peopleWebPWD").val();
+                var message = {
+                    "LINK": "p2c",
+                    "ISTR": "log",
+                    "CONT": "p",
+                    "peopleWebName": peopleWebName,
+                    "peopleWebPWD": peopleWebPWD,
+                };
+                OpenIOE_userLogin(message);
+            })
+            $("#buttonSend").click(function() {
+                peopleWebName = $("#peopleWebName").val();
+                message = $("#message").val();
+                var message = {
+                    "LINK": "p2m",
+                    "ISTR": "tm",
+                    "MID": "00000000ibvx1bGT", //此处MID 为设备使用的ID号
+                    "MSG": message
+                };
+                OpenIOE_sendMachine(message);
+            })
+        </script>
+    </body>
+</html>
