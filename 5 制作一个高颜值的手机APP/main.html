@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+
+		<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap-theme.css" />
+	</head>
+
+	<body>
+
+		<div class="container-fluid">
+			<br>
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title text-center">灯光控制</h3>
+				</div>
+				<div class="panel-body">
+
+					<div class="btn-group btn-group-justified" role="group" aria-label="Justified button group">
+						<a id="ALL-ON" class="btn btn-warning" role="button">全亮</a>
+						<a id="ALL-OFF" class="btn btn-warning" role="button">全灭</a>
+					</div>
+
+					<div class="btn-group btn-group-justified" role="group" aria-label="Justified button group">
+						<a id="B-ON" class="btn btn-primary" role="button">蓝亮</a>
+						<a id="B-OFF" class="btn btn-primary" role="button">蓝灭</a>
+						<a id="R-ON" class="btn btn-danger" role="button">红亮</a>
+						<a id="R-OFF" class="btn btn-danger" role="button">红灭</a>
+						<a id="G-ON" class="btn btn-success" role="button">绿亮</a>
+						<a id="G-OFF" class="btn btn-success" role="button">绿灭</a>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="vendor/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+
+		<script type="text/javascript">
+			
+			var MID = "00000000ibvx1bGT"; //此处MID 为设备使用的ID号 自行替换为自己的
+			
+			var OpenIOE_sendMachine = function(string) {
+				$.ajax({
+					type: "GET",
+					url: "https://api.celerstar.com/IOT/index.php",
+					data: string,
+					timeout: 5000,
+					dataType: 'JSONP',
+					jsonp: "callback",
+					success: function(data) {
+						console.log(data);
+						if(data["INFO"] == "true") {} else {}
+					},
+					error: function() {}
+				});
+				return false;
+			}
+
+			$("#ALL-ON").click(function() {
+
+				var message = {
+					"LINK": "p2m",
+					"ISTR": "tm",
+					"MID": MID, //此处MID 为设备使用的ID号
+					"MSG": "ALL-ON"
+				};
+				OpenIOE_sendMachine(message);
+			})
+
+			$("#ALL-OFF").click(function() {
+
+				var message = {
+					"LINK": "p2m",
+					"ISTR": "tm",
+					"MID": MID, //此处MID 为设备使用的ID号
+					"MSG": "ALL-OFF"
+				};
+				OpenIOE_sendMachine(message);
+			})
+
+			$("#R-ON").click(function() {
+
+				var message = {
+					"LINK": "p2m",
+					"ISTR": "tm",
+					"MID": MID, //此处MID 为设备使用的ID号
+					"MSG": "R-ON"
+				};
+				OpenIOE_sendMachine(message);
+			})
+
+			$("#R-OFF").click(function() {
+
+				var message = {
+					"LINK": "p2m",
+					"ISTR": "tm",
+					"MID": MID, //此处MID 为设备使用的ID号
+					"MSG": "R-OFF"
+				};
+				OpenIOE_sendMachine(message);
+			})
+
+			$("#B-ON").click(function() {
+
+				var message = {
+					"LINK": "p2m",
+					"ISTR": "tm",
+					"MID": MID, //此处MID 为设备使用的ID号
+					"MSG": "B-ON"
+				};
+				OpenIOE_sendMachine(message);
+			})
+
+			$("#B-OFF").click(function() {
+
+				var message = {
+					"LINK": "p2m",
+					"ISTR": "tm",
+					"MID": MID, //此处MID 为设备使用的ID号
+					"MSG": "B-OFF"
+				};
+				OpenIOE_sendMachine(message);
+			})
+
+			$("#G-ON").click(function() {
+
+				var message = {
+					"LINK": "p2m",
+					"ISTR": "tm",
+					"MID": MID, //此处MID 为设备使用的ID号
+					"MSG": "G-ON"
+				};
+				OpenIOE_sendMachine(message);
+			})
+
+			$("#G-OFF").click(function() {
+
+				var message = {
+					"LINK": "p2m",
+					"ISTR": "tm",
+					"MID": MID, //此处MID 为设备使用的ID号
+					"MSG": "G-OFF"
+				};
+				OpenIOE_sendMachine(message);
+			})
+		</script>
+
+	</body>
+
+</html>

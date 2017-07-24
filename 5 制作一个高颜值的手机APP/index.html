@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+
+		<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap-theme.css" />
+	</head>
+
+	<body>
+
+		<div class="container-fluid">
+			<div class="">
+				<div class="text-center">
+					<h1 class="text-success">OpenIOE</h1>
+				</div>
+			</div>
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title text-center">用户登陆</h3>
+				</div>
+				<div class="panel-body">
+
+					<div class="input-group">
+						<span class="input-group-addon">账户</span>
+						<input type="text" class="form-control" placeholder="账户" id="peopleWebName">
+					</div>
+
+					<div class="input-group" style="padding-top: 5px;">
+						<span class="input-group-addon">密码</span>
+						<input type="password" class="form-control" placeholder="密码" id="peopleWebPWD">
+					</div>
+					<br>
+					<div class="">
+						<button class="pull-right btn btn-success" id="button1">登陆</button>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="vendor/bootstrap/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+
+		<script type="text/javascript">
+			var OpenIOE_userLogin = function(string) {
+				$.ajax({
+					type: "GET",
+					url: "https://api.celerstar.com/IOT/index.php",
+					data: string,
+					timeout: 5000,
+					dataType: 'JSONP',
+					jsonp: "callback",
+					success: function(data) {
+						console.log(data);
+						if(data["INFO"] == "true") {
+							window.location.href = 'main.html';
+						} else {
+							alert("登陆失败");
+						}
+					},
+					error: function() {}
+				});
+				return false;
+			}
+
+			$("#button1").click(function() {
+				peopleWebName = $("#peopleWebName").val();
+				peopleWebPWD = $("#peopleWebPWD").val();
+				var message = {
+					"LINK": "p2c",
+					"ISTR": "log",
+					"CONT": "p",
+					"peopleWebName": peopleWebName,
+					"peopleWebPWD": peopleWebPWD,
+				};
+				OpenIOE_userLogin(message);
+			})
+		</script>
+
+	</body>
+
+</html>

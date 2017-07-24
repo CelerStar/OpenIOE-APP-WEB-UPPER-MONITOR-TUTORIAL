@@ -1,0 +1,20 @@
+{
+  "index.html": {
+    "resources": [
+      "vendor/bootstrap/js/bootstrap.js",
+      "vendor/bootstrap/css/bootstrap-theme.css",
+      "jquery-2.1.0.js",
+      "vendor/bootstrap/css/bootstrap.css",
+      "main.html"
+    ],
+    "refer": [
+      "main.html"
+    ]
+  },
+  "main.html": {
+    "resources": [
+      "vendor/bootstrap/css/bootstrap-theme.css",
+      "vendor/bootstrap/css/bootstrap.css"
+    ]
+  }
+}
